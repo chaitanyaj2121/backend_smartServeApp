@@ -50,6 +50,7 @@ router.post(
 // Customer routes
 router.get("/customers", CustomerController.getCustomers)
 router.post("/customers/update/:id", CustomerController.updateCustomer)
+router.post("/renew-customer", CustomerController.renewCustomer)
 
 router.post(
   "/addCustomer",

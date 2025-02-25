@@ -151,20 +151,26 @@ const CustomerController = {
       // Get the current date
       const newStartDate = new Date()
 
-      // Update the customer's start_date in Firestore
+      // Update the customer's start_date in Firestore and reset feesPaid to 0
       await db.collection("customers").doc(customerId).update({
         start_date: newStartDate,
         feesPaid: 0,
       })
 
-      // Redirect back to the dashboard or send a success response
-      req.flash("success", "Renew Success!")
-      res.redirect("/dashboard")
+      // Send a JSON response
+      return res.status(200).json({
+        success: true,
+        message: "Renew Success!",
+        newStartDate: newStartDate,
+      })
     } catch (error) {
       console.error("Error renewing customer:", error)
 
-      req.flash("error", "Error renewing customer.")
-      res.redirect("/dashboard")
+      return res.status(500).json({
+        success: false,
+        message: "Error renewing customer.",
+        error: error.message,
+      })
     }
   },
 }
