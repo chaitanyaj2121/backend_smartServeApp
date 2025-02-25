@@ -58,6 +58,8 @@ router.post(
   CustomerController.addCustomer
 )
 
+router.post("/delete-customer", CustomerController.deleteCustomer)
+
 // Dashboard routes
 router.get("/dashboard", DashboardController.getDashboard)
 

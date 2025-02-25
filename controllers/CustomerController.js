@@ -119,8 +119,9 @@ const CustomerController = {
       const customerDoc = await db.collection("customers").doc(customerId).get()
 
       if (!customerDoc.exists) {
-        req.flash("error", "Customer not found!")
-        return res.redirect("/dashboard")
+        return res
+          .status(404)
+          .json({ success: false, message: "Customer not found!" })
       }
 
       const customerData = customerDoc.data()
@@ -128,7 +129,6 @@ const CustomerController = {
       // Check if the customer has a customerImage and fileName
       if (customerData.customerImage && customerData.customerImage.fileName) {
         const fileName = customerData.customerImage.fileName
-
         // Delete the image from Cloudinary
         await cloudinary.uploader.destroy(fileName)
       }
@@ -136,14 +136,19 @@ const CustomerController = {
       // Delete the customer document from Firestore
       await db.collection("customers").doc(customerId).delete()
 
-      req.flash("success", "Customer deleted successfully!")
-      res.redirect("/dashboard")
+      return res
+        .status(200)
+        .json({ success: true, message: "Customer deleted successfully!" })
     } catch (error) {
       console.error("Error deleting customer:", error)
-      req.flash("error", "Error deleting customer.")
-      res.status(500).send("Error deleting customer.")
+      return res.status(500).json({
+        success: false,
+        message: "Error deleting customer.",
+        error: error.message,
+      })
     }
   },
+
   renewCustomer: async (req, res) => {
     const { customerId } = req.body
 
