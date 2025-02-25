@@ -66,12 +66,21 @@ const CustomerController = {
   updateCustomer: async (req, res) => {
     try {
       const custId = req.params.id
-      const { name, mobile, start_date, feesPaid, suttya } = req.body
+      const { feesPaid, suttya } = req.body
+
+      console.log("data recieved :", feesPaid)
+      console.log("suttya:", suttya)
 
       const customerRef = db.collection("customers").doc(custId)
 
       // Fetch the existing customer document
       const customerSnapshot = await customerRef.get()
+
+      if (!customerSnapshot.exists) {
+        return res
+          .status(404)
+          .json({ success: false, message: "Customer not found" })
+      }
 
       // Get the existing customer data
       const customerData = customerSnapshot.data()
@@ -80,25 +89,26 @@ const CustomerController = {
 
       // Extend the date if `suttya` is provided
       if (suttya) {
-        const daysToExtend = parseInt(req.body.suttya, 10) || 0
+        const daysToExtend = parseInt(suttya, 10) || 0
         updatedStartDate.setDate(updatedStartDate.getDate() + daysToExtend) // Extend the date
       }
 
       // Prepare the updated fields
       const updatedData = {
-        name: name || customerData.name,
-        mobile: mobile || customerData.mobile,
         start_date: updatedStartDate, // Store the updated Date object
         feesPaid: feesPaid || customerData.feesPaid,
       }
 
       // Update the document in Firestore
       await customerRef.update(updatedData)
-      req.flash("success", "Updation Success!")
-      res.redirect("/dashboard")
+
+      return res.status(200).json({
+        success: true,
+        message: "Customer updated successfully",
+        data: updatedData,
+      })
     } catch (error) {
-      req.flash("error", `${error.message}`)
-      res.redirect("/dashboard")
+      return res.status(500).json({ success: false, message: error.message })
     }
   },
   deleteCustomer: async (req, res) => {

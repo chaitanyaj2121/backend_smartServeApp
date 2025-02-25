@@ -49,6 +49,8 @@ router.post(
 
 // Customer routes
 router.get("/customers", CustomerController.getCustomers)
+router.post("/customers/update/:id", CustomerController.updateCustomer)
+
 router.post(
   "/addCustomer",
   upload.single("file"), // ✅ Ensure frontend sends 'file' field
