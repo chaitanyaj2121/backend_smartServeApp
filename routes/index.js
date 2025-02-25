@@ -32,6 +32,7 @@ const db = admin.firestore()
 const AuthController = require("../controllers/AuthController")
 const CustomerController = require("../controllers/CustomerController")
 const DashboardController = require("../controllers/DashboardController")
+const NotificationController = require("../controllers/NotificationController")
 
 // Auth routes
 router.post("/signup/business", AuthController.registerBusiness)
@@ -62,6 +63,9 @@ router.post("/delete-customer", CustomerController.deleteCustomer)
 
 // Dashboard routes
 router.get("/dashboard", DashboardController.getDashboard)
+
+// Notifications routes
+router.get("/notifications", NotificationController.getNotifications)
 
 // Logout
 router.get("/logout", AuthController.logout)
