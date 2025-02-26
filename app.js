@@ -17,25 +17,6 @@ const db = admin.firestore()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// Session configuration
-app.use(
-  session({
-    store: new FirestoreStore({
-      database: db,
-      collection: "sessions",
-    }),
-    secret: process.env.SESSIONSECRET || "yoursecretkey",
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
-    },
-  })
-)
-
 // Use routes
 app.use("/", mainRoutes)
 
