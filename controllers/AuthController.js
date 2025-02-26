@@ -127,7 +127,7 @@ const AuthController = {
 
       // Generate JWT token
       const token = jwt.sign({ uid }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
+        expiresIn: "6h",
       })
 
       return res.status(200).json({ success: true, token, user: userData })

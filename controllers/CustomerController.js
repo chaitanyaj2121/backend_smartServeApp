@@ -25,9 +25,11 @@ const CustomerController = {
   },
   addCustomer: async (req, res) => {
     try {
-      // Extract data from the request body
-      const { name, mobile, start_date, feesPaid, messId } = req.body
+      // // Extract data from the request body
 
+      const { name, mobile, start_date, feesPaid, messId } = req.body
+      const { uid } = req.user
+      console.log("this is uid:", uid)
       // Ensure file was uploaded
       if (!req.file) {
         return res.status(400).json({ error: "No file uploaded" })

@@ -33,6 +33,7 @@ const AuthController = require("../controllers/AuthController")
 const CustomerController = require("../controllers/CustomerController")
 const DashboardController = require("../controllers/DashboardController")
 const NotificationController = require("../controllers/NotificationController")
+const verifyToken = require("../auth")
 
 // Auth routes
 router.post("/signup/business", AuthController.registerBusiness)
@@ -55,6 +56,7 @@ router.post("/renew-customer", CustomerController.renewCustomer)
 
 router.post(
   "/addCustomer",
+  verifyToken,
   upload.single("file"), // ✅ Ensure frontend sends 'file' field
   CustomerController.addCustomer
 )
