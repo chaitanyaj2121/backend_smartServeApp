@@ -26,7 +26,6 @@ const CustomerController = {
   addCustomer: async (req, res) => {
     try {
       // // Extract data from the request body
-
       const { name, mobile, start_date, feesPaid, messId } = req.body
 
       // Ensure file was uploaded
@@ -55,6 +54,7 @@ const CustomerController = {
         messId: Number(messId), // ✅ Store messId as an integer
         feesPaid: parseFloat(feesPaid) || 0.0, // ✅ Store feesPaid as a double
         customerImage: { url, fileName },
+        uid,
         createdAt: new Date(),
       })
 

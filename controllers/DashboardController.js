@@ -8,7 +8,7 @@ const DashboardController = {
       console.log("Incoming request to /dashboard") // Log request start
 
       const messId = 1250 // Now an integer
-      const feesAmount = 2300.0 // Now a double
+      const feesAmount = 2200.0 // Now a double
 
       let customers = []
 
