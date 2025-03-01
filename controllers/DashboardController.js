@@ -7,7 +7,7 @@ const DashboardController = {
     try {
       console.log("Incoming request to /dashboard") // Log request start
 
-      const messId = 1250 // Now an integer
+      const messId = req.query.messId
       const feesAmount = 2200.0 // Now a double
 
       let customers = []
