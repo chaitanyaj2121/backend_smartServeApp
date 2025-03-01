@@ -3,7 +3,9 @@ const db = admin.firestore()
 
 const NotificationController = {
   getNotifications: async (req, res) => {
-    const messId = 1250
+    const messId = req.query.messId
+    // console.log("this is messs id at notfi", messId)
+
     const today = new Date() // Get today's date
     today.setHours(0, 0, 0, 0) // Normalize to midnight for comparison
 
