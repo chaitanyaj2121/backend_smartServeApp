@@ -25,7 +25,7 @@ const CustomerController = {
   },
   addCustomer: async (req, res) => {
     try {
-      // // Extract data from the request body
+      // Extract data from the request body (uid removed)
       const { name, mobile, start_date, feesPaid, messId } = req.body
 
       // Ensure file was uploaded
@@ -50,11 +50,10 @@ const CustomerController = {
       await db.collection("customers").add({
         name,
         mobile: mobile || null,
-        start_date: start_date ? new Date(start_date) : new Date(), // ✅ Convert string to Date
-        messId: Number(messId), // ✅ Store messId as an integer
-        feesPaid: parseFloat(feesPaid) || 0.0, // ✅ Store feesPaid as a double
+        start_date: start_date ? new Date(start_date) : new Date(), // Convert string to Date
+        messId, // Store messId (which is a string containing the uid)
+        feesPaid: parseFloat(feesPaid) || 0.0, // Store feesPaid as a double
         customerImage: { url, fileName },
-        uid,
         createdAt: new Date(),
       })
 
@@ -64,6 +63,7 @@ const CustomerController = {
       res.status(500).json({ error: error.message })
     }
   },
+
   updateCustomer: async (req, res) => {
     try {
       const custId = req.params.id

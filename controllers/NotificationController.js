@@ -15,7 +15,7 @@ const NotificationController = {
     const lastDayOfPreviousMonth = new Date(
       oneMonthBefore.getFullYear(),
       oneMonthBefore.getMonth() + 1,
-      0 // Get the last day of the previous month
+      0 // Get the last day of the previous mo  nth
     ).getDate()
 
     try {
