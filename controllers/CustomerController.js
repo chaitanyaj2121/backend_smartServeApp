@@ -6,10 +6,11 @@ const { storage, cloudinary } = require("../cloudConfig")
 const upload = multer({ storage })
 
 const CustomerController = {
+  // Backend getCustomers endpoint
   getCustomers: async (req, res) => {
     try {
-      // Directly filter customers with messId = 1250
-      const query = db.collection("customers").where("messId", "==", 1250)
+      const messId = req.query.messId // Get messId from query params
+      const query = db.collection("customers").where("messId", "==", messId)
 
       const snapshot = await query.get()
       const customers = snapshot.docs.map((doc) => ({
