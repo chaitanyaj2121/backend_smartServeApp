@@ -33,6 +33,7 @@ const AuthController = require("../controllers/AuthController")
 const CustomerController = require("../controllers/CustomerController")
 const DashboardController = require("../controllers/DashboardController")
 const NotificationController = require("../controllers/NotificationController")
+const ProfileController = require("../controllers/ProfileController")
 
 // Auth routes
 router.post("/signup/business", AuthController.registerBusiness)
@@ -58,6 +59,8 @@ router.post(
   upload.single("file"), // ✅ Ensure frontend sends 'file' field
   CustomerController.addCustomer
 )
+router.get("/profile/business", ProfileController.getProfile)
+router.post("/profile/business", ProfileController.updateProfile)
 
 router.post("/delete-customer", CustomerController.deleteCustomer)
 
