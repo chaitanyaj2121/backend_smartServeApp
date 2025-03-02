@@ -8,8 +8,9 @@ const DashboardController = {
       console.log("Incoming request to /dashboard") // Log request start
 
       const messId = req.query.messId
-      const fees = req.query.fees // Now a double
-      const feesAmount = parseFloat(fees)
+      // console.log("messid: ", messId)
+      const feesAmount = req.query.fees
+      // console.log("fees came :", feesAmount)
 
       let customers = []
 
