@@ -8,7 +8,9 @@ const DashboardController = {
       console.log("Incoming request to /dashboard") // Log request start
 
       const messId = req.query.messId
-      const feesAmount = 2200.0 // Now a double
+      const fees = req.query.fees // Now a double
+      const feesAmount = parseFloat(fees)
+      console.log("working")
 
       let customers = []
 
@@ -34,7 +36,7 @@ const DashboardController = {
           .sort((a, b) => b.feesRemaining - a.feesRemaining) // Sort in descending order
       }
 
-      console.log("Response Data:", customers) // Log data before response
+      // console.log("Response Data:", customers) // Log data before response
 
       res.status(200).json({ success: true, customers })
     } catch (error) {
