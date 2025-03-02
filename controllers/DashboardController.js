@@ -10,7 +10,6 @@ const DashboardController = {
       const messId = req.query.messId
       const fees = req.query.fees // Now a double
       const feesAmount = parseFloat(fees)
-      console.log("working")
 
       let customers = []
 
