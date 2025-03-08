@@ -10,9 +10,14 @@ const CustomerController = {
   getCustomers: async (req, res) => {
     try {
       const messId = req.query.messId // Get messId from query params
-      const query = db.collection("customers").where("messId", "==", messId)
 
-      const snapshot = await query.get()
+      // Get customers from subcollection instead
+      const customersRef = db
+        .collection("messes")
+        .doc(messId)
+        .collection("customers")
+      const snapshot = await customersRef.get()
+
       const customers = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
@@ -24,9 +29,10 @@ const CustomerController = {
       res.status(500).json({ success: false, message: "Internal Server Error" })
     }
   },
+
   addCustomer: async (req, res) => {
     try {
-      // Extract data from the request body (uid removed)
+      // Extract data from the request body
       const { name, mobile, start_date, feesPaid, messId } = req.body
 
       // Ensure file was uploaded
@@ -47,12 +53,24 @@ const CustomerController = {
         customerImage: { url, fileName },
       })
 
-      // Store data in Firestore
-      await db.collection("customers").add({
+      // First, ensure the mess document exists with messId as document ID
+      const messRef = db.collection("messes").doc(messId)
+      const messDoc = await messRef.get()
+
+      // If mess document doesn't exist, create it
+      if (!messDoc.exists) {
+        await messRef.set({
+          createdAt: new Date(),
+          messId: messId,
+          // Add any other mess-specific fields here if needed
+        })
+      }
+
+      // Now add the customer as a document in a subcollection
+      await messRef.collection("customers").add({
         name,
         mobile: mobile || null,
         start_date: start_date ? new Date(start_date) : new Date(), // Convert string to Date
-        messId, // Store messId (which is a string containing the uid)
         feesPaid: parseFloat(feesPaid) || 0.0, // Store feesPaid as a double
         customerImage: { url, fileName },
         createdAt: new Date(),
@@ -67,13 +85,19 @@ const CustomerController = {
 
   updateCustomer: async (req, res) => {
     try {
+      const messId = req.query.messId // Get messId from query params
       const custId = req.params.id
       const { feesPaid, suttya } = req.body
 
       console.log("data recieved :", feesPaid)
       console.log("suttya:", suttya)
 
-      const customerRef = db.collection("customers").doc(custId)
+      // Reference to the customer in subcollection
+      const customerRef = db
+        .collection("messes")
+        .doc(messId)
+        .collection("customers")
+        .doc(custId)
 
       // Fetch the existing customer document
       const customerSnapshot = await customerRef.get()
@@ -113,12 +137,18 @@ const CustomerController = {
       return res.status(500).json({ success: false, message: error.message })
     }
   },
+
   deleteCustomer: async (req, res) => {
-    const { customerId } = req.body
+    const { customerId, messId } = req.body
 
     try {
-      // Retrieve the customer's document
-      const customerDoc = await db.collection("customers").doc(customerId).get()
+      // Retrieve the customer's document from subcollection
+      const customerRef = db
+        .collection("messes")
+        .doc(messId)
+        .collection("customers")
+        .doc(customerId)
+      const customerDoc = await customerRef.get()
 
       if (!customerDoc.exists) {
         return res
@@ -136,7 +166,7 @@ const CustomerController = {
       }
 
       // Delete the customer document from Firestore
-      await db.collection("customers").doc(customerId).delete()
+      await customerRef.delete()
 
       return res
         .status(200)
@@ -152,17 +182,24 @@ const CustomerController = {
   },
 
   renewCustomer: async (req, res) => {
-    const { customerId } = req.body
+    const { customerId, messId } = req.body
+    console.log("customer id :", customerId)
+    console.log("mess id :", messId)
 
     try {
       // Get the current date
       const newStartDate = new Date()
 
-      // Update the customer's start_date in Firestore and reset feesPaid to 0
-      await db.collection("customers").doc(customerId).update({
-        start_date: newStartDate,
-        feesPaid: 0,
-      })
+      // Update the customer's start_date in Firestore subcollection and reset feesPaid to 0
+      await db
+        .collection("messes")
+        .doc(messId)
+        .collection("customers")
+        .doc(customerId)
+        .update({
+          start_date: newStartDate,
+          feesPaid: 0,
+        })
 
       // Send a JSON response
       return res.status(200).json({

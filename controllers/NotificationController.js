@@ -9,10 +9,12 @@ const NotificationController = {
     today.setHours(0, 0, 0, 0) // Normalize to midnight for comparison
 
     try {
-      const customersSnapshot = await db
+      // Get customers from subcollection instead
+      const customersRef = db
+        .collection("messes")
+        .doc(messId)
         .collection("customers")
-        .where("messId", "==", messId)
-        .get()
+      const customersSnapshot = await customersRef.get()
 
       // Helper function to add months with end-of-month adjustment
       const addMonths = (date, months) => {

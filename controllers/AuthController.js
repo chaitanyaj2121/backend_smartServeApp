@@ -67,9 +67,11 @@ const AuthController = {
   // User Login
   login: async (req, res) => {
     const { email, password } = req.body
+    console.log(email)
 
     try {
       // Validate email and password
+      console.log("got the request")
       if (!email || !password) {
         return res.status(400).json({
           success: false,
