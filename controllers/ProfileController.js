@@ -12,7 +12,7 @@ const ProfileController = {
 
       if (businessDoc.exists) {
         const businessData = businessDoc.data()
-        console.log("Business data:", businessData)
+        // console.log("Business data:", businessData)
         return res.status(200).json({ data: businessData })
       } else {
         return res

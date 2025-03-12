@@ -25,7 +25,7 @@ const CustomerController = {
 
       res.status(200).json({ success: true, customers })
     } catch (error) {
-      console.error("Error fetching customers:", error)
+      console.error("Error fetching customers:", error.message)
       res.status(500).json({ success: false, message: "Internal Server Error" })
     }
   },
@@ -44,14 +44,14 @@ const CustomerController = {
       const url = req.file.path
       const fileName = req.file.filename
 
-      console.log("Received data:", {
-        name,
-        mobile,
-        start_date,
-        feesPaid,
-        messId,
-        customerImage: { url, fileName },
-      })
+      // console.log("Received data:", {
+      //   name,
+      //   mobile,
+      //   start_date,
+      //   feesPaid,
+      //   messId,
+      //   customerImage: { url, fileName },
+      // })
 
       // First, ensure the mess document exists with messId as document ID
       const messRef = db.collection("messes").doc(messId)
@@ -78,7 +78,7 @@ const CustomerController = {
 
       res.status(200).json({ message: "Customer added successfully!" })
     } catch (error) {
-      console.error("Error adding customer:", error)
+      console.error("Error adding customer:", error.message)
       res.status(500).json({ error: error.message })
     }
   },
@@ -89,8 +89,8 @@ const CustomerController = {
       const custId = req.params.id
       const { feesPaid, suttya } = req.body
 
-      console.log("data recieved :", feesPaid)
-      console.log("suttya:", suttya)
+      // console.log("data recieved :", feesPaid)
+      // console.log("suttya:", suttya)
 
       // Reference to the customer in subcollection
       const customerRef = db
@@ -172,7 +172,7 @@ const CustomerController = {
         .status(200)
         .json({ success: true, message: "Customer deleted successfully!" })
     } catch (error) {
-      console.error("Error deleting customer:", error)
+      console.error("Error deleting customer:", error.message)
       return res.status(500).json({
         success: false,
         message: "Error deleting customer.",
@@ -183,8 +183,8 @@ const CustomerController = {
 
   renewCustomer: async (req, res) => {
     const { customerId, messId } = req.body
-    console.log("customer id :", customerId)
-    console.log("mess id :", messId)
+    // console.log("customer id :", customerId)
+    // console.log("mess id :", messId)
 
     try {
       // Get the current date
@@ -208,7 +208,7 @@ const CustomerController = {
         newStartDate: newStartDate,
       })
     } catch (error) {
-      console.error("Error renewing customer:", error)
+      console.error("Error renewing customer:", error.message)
 
       return res.status(500).json({
         success: false,

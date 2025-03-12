@@ -5,7 +5,7 @@ const db = admin.firestore()
 const DashboardController = {
   getDashboard: async (req, res) => {
     try {
-      console.log("Incoming request to /dashboard") // Log request start
+      // console.log("Incoming request to /dashboard") // Log request start
 
       const messId = req.query.messId
       // console.log("messid: ", messId)
@@ -50,7 +50,7 @@ const DashboardController = {
 
       res.status(200).json({ success: true, customers })
     } catch (error) {
-      console.error("Error in getDashboard:", error)
+      console.error("Error in getDashboard:", error.message)
       res.status(500).json({ success: false, message: "Internal Server Error" })
     }
   },
@@ -58,7 +58,7 @@ const DashboardController = {
   // New function for filtered dashboard data
   getFilteredDashboard: async (req, res) => {
     try {
-      console.log("Incoming request to /dashboard/filtered")
+      // console.log("Incoming request to /dashboard/filtered")
 
       const messId = req.query.messId
       const feesAmount = parseFloat(req.query.fees || 0)
@@ -131,7 +131,7 @@ const DashboardController = {
         },
       })
     } catch (error) {
-      console.error("Error in getFilteredDashboard:", error)
+      console.error("Error in getFilteredDashboard:", error.message)
       res.status(500).json({ success: false, message: "Internal Server Error" })
     }
   },

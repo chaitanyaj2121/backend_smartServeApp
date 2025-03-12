@@ -59,7 +59,7 @@ const AuthController = {
         message: "Business registered successfully. Verification email sent.",
       })
     } catch (error) {
-      console.error("Error registering business:", error)
+      console.error("Error registering business:", error.message)
       return res.status(400).json({ success: false, message: error.message })
     }
   },
@@ -67,11 +67,11 @@ const AuthController = {
   // User Login
   login: async (req, res) => {
     const { email, password } = req.body
-    console.log(email)
+    // console.log(email)
 
     try {
       // Validate email and password
-      console.log("got the request")
+      // console.log("got the request")
       if (!email || !password) {
         return res.status(400).json({
           success: false,
@@ -172,7 +172,7 @@ const AuthController = {
         message: "Customer registered successfully. Verification email sent.",
       })
     } catch (error) {
-      console.error("Error registering customer:", error)
+      console.error("Error registering customer:", error.message)
       return res.status(400).json({ success: false, message: error.message })
     }
   },

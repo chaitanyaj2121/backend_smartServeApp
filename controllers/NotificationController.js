@@ -56,7 +56,7 @@ const NotificationController = {
         notifications: filteredCustomers,
       })
     } catch (error) {
-      console.error("Error fetching notifications:", error)
+      console.error("Error fetching notifications:", error.message)
       return res.status(500).json({
         success: false,
         message: "Error fetching notifications.",
