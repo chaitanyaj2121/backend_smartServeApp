@@ -35,6 +35,9 @@ const DashboardController = require("../controllers/DashboardController")
 const NotificationController = require("../controllers/NotificationController")
 const ProfileController = require("../controllers/ProfileController")
 
+router.get("/", (req, res) => {
+  res.render("home") // Render the home page
+})
 // Auth routes
 router.post("/signup/business", AuthController.registerBusiness)
 router.post("/signup/user", AuthController.registerCustomer)

@@ -6,9 +6,11 @@ require("dotenv").config()
 const session = require("express-session")
 const FirestoreStore = require("firestore-store")(session) // Firestore session store
 const admin = require("firebase-admin")
-
+const bodyParser = require("body-parser")
 // Import routes (ensure routes use or import the isLoggedIn middleware when needed)
 const mainRoutes = require("./routes")
+const ejsMate = require("ejs-mate")
+const path = require("path")
 
 // Firebase setup
 const db = admin.firestore()
@@ -16,6 +18,13 @@ const db = admin.firestore()
 // Middleware for parsing JSON and urlencoded data
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, "public")))
+
+// Templating
+app.engine("ejs", ejsMate)
+app.set("view engine", "ejs")
+app.set("views", path.join(__dirname, "views"))
 
 // Session configuration
 const sessionOptions = {
