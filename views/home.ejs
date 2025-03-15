@@ -58,7 +58,77 @@
         font-size: 1.25rem;
         margin-bottom: 2rem;
       }
+      /* Navbar Styles */
+      body {
+        padding-top: 76px; /* To account for fixed navbar */
+      }
 
+      .custom-navbar {
+        background-color: white;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        padding: 0.75rem 1rem;
+      }
+
+      .navbar-brand {
+        font-weight: 700;
+        color: var(--primary-color) !important;
+        font-size: 1.5rem;
+      }
+
+      .nav-link {
+        color: var(--dark-text) !important;
+        font-weight: 500;
+        margin: 0 0.5rem;
+        padding: 0.5rem 0.75rem !important;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+      }
+
+      .nav-link:hover {
+        color: var(--primary-color) !important;
+        background-color: var(--light-bg);
+      }
+
+      .nav-link.active {
+        color: var(--primary-color) !important;
+        background-color: rgba(37, 99, 235, 0.1);
+      }
+
+      .navbar-toggler {
+        border: none;
+        outline: none !important;
+      }
+
+      .navbar-toggler:focus {
+        box-shadow: none;
+      }
+
+      /* Make sure the color variables are defined */
+      :root {
+        --primary-color: #2563eb;
+        --secondary-color: #1e40af;
+        --light-bg: #f8fafc;
+        --dark-text: #1e293b;
+      }
+
+      /* Button style for navbar */
+      .btn-primary {
+        background-color: var(--primary-color);
+        border-color: var(--primary-color);
+        border-radius: 10px;
+        padding: 0.8rem 1.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        transition: all 0.3s ease;
+      }
+
+      .btn-primary:hover {
+        background-color: var(--secondary-color);
+        border-color: var(--secondary-color);
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      }
       .hero-image {
         transform: perspective(1000px) rotateY(-10deg);
         transition: transform 0.5s ease;
@@ -289,260 +359,494 @@
     </style>
   </head>
   <body>
+    
     <!-- Main Container -->
     <div class="container">
+      <nav class="navbar navbar-expand-lg fixed-top navbar-light custom-navbar">
+        <div class="container">
+          <a class="navbar-brand" href="#">
+            <i class="fas fa-leaf me-2"></i>SevaSamruddhi
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+              <!-- Your existing nav items (currently commented out) -->
+              <!-- <li class="nav-item">
+                <a class="nav-link active" href="#" onclick="showScreen('home')">Home</a>
+              </li> -->
+              <!-- Other nav items... -->
+            </ul>
+            
+            <!-- Language Selector Dropdown -->
+            <div class="dropdown me-3">
+              <button class="btn btn-outline-primary dropdown-toggle" type="button" id="languageDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fas fa-globe me-1"></i> English
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                <li><a class="dropdown-item active" href="#" onclick="changeLanguage('en')">English</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('hi')">हिंदी (Hindi)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('mr')">मराठी (Marathi)</a></li>
+                <li><a class="dropdown-item" href="#" onclick="changeLanguage('gu')">ગુજરાતી (Gujarati)</a></li>
+              </ul>
+            </div>
+            
+            <a href="https://drive.google.com/file/d/1pL6_NeldQJGgAjSwJPlxflBcrZ4qdVrz/view" target="_blank" class="btn btn-primary" data-i18n="download-app">Download App</a>
+          </div>
+        </div>
+      </nav>
       <!-- Hero Section -->
-     <!-- Hero Section -->
-<div class="row hero-section align-items-center my-4 p-4">
-  <div class="col-lg-6">
-    <h1 class="mb-4">Transform Your Service Management</h1>
-    <p class="lead mb-4">
-      Welcome to <strong>SevaSamruddhi</strong>, the all-in-one platform
-      that revolutionizes how you manage subscriptions, track payments,
-      and engage with customers.
-    </p>
-    <div class="hero-buttons">
-      <!-- <a href="/signup/business" class="btn btn-primary me-3 mb-2">
-        <i class="fas fa-rocket me-2"></i> Start Free Trial
-      </a> -->
-      <a href="https://drive.google.com/file/d/1kQLYfed6-qT4K8ZQ2O4YbiMpstSBZ2iz/view" target="_blank" class="btn btn-outline mb-2">
-        <i class="fas fa-download me-2"></i> Install App
-      </a>
+      <!-- Hero Section -->
+      <div class="row hero-section align-items-center my-4 p-4">
+        <div class="col-lg-6">
+          <h1 class="mb-4" data-i18n="hero-title">Transform Your Service Management</h1>
+          <p class="lead mb-4" data-i18n="hero-description">
+            Welcome to <strong>SevaSamruddhi</strong>, the all-in-one platform
+            that revolutionizes how you manage subscriptions, track payments,
+            and engage with customers.
+          </p>
+          <div class="hero-buttons">
+            
+          </div>
+        </div>
+        
+        <a href="https://drive.google.com/file/d/1pL6_NeldQJGgAjSwJPlxflBcrZ4qdVrz/view" target="_blank" class="btn btn-outline mb-2">
+          <i class="fas fa-download me-2"></i> <span data-i18n="install-app">Install App</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="row stats-section">
+      <div class="col-12 text-center mb-5">
+        <h2 class="fw-bold mb-4" data-i18n="stats-title">Trusted by Growing Businesses</h2>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="stat-card">
+          <i
+            class="fas fa-users fa-2x mb-3"
+            style="color: var(--primary-color)"
+          ></i>
+          <div class="stat-number">100+</div>
+          <h5 class="fw-bold" data-i18n="active-users">Active Users</h5>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="stat-card">
+          <i
+            class="fas fa-clipboard-check fa-2x mb-3"
+            style="color: var(--primary-color)"
+          ></i>
+          <div class="stat-number">98%</div>
+          <h5 class="fw-bold" data-i18n="customer-satisfaction">Customer Satisfaction</h5>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="stat-card">
+          <i
+            class="fas fa-clock fa-2x mb-3"
+            style="color: var(--primary-color)"
+          ></i>
+          <div class="stat-number">15+</div>
+          <h5 class="fw-bold" data-i18n="hours-saved">Hours Saved Weekly</h5>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="row my-5">
+      <div class="col-12 text-center mb-5">
+        <h2 class="fw-bold" data-i18n="features-title">Powerful Features, Simplified</h2>
+        <p class="text-muted mb-5 w-75 mx-auto" data-i18n="features-description">
+          SevaSamruddhi Center combines cutting-edge technology with
+          user-friendly design to streamline your service management workflow.
+        </p>
+      </div>
+
+      <!-- Feature 1 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-users fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature1-title">Smart Customer Management</h4>
+          <p class="mb-0" data-i18n="feature1-description">
+            Effortlessly organize customer profiles with subscription details,
+            payment history, and personalized preferences.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 2 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bell fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature2-title">Intelligent Notifications</h4>
+          <p class="mb-0" data-i18n="feature2-description">
+            Stay ahead with automated alerts for subscription renewals,
+            payment reminders, and important updates.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 3 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-calendar-alt fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature3-title">Flexible Scheduling</h4>
+          <p class="mb-0" data-i18n="feature3-description">
+            Dynamically adjust service periods and automatically extend
+            subscriptions for absentee days.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 4 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-chart-line fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature4-title">Insightful Analytics</h4>
+          <p class="mb-0" data-i18n="feature4-description">
+            Make data-driven decisions with comprehensive dashboards showing
+            payment trends and customer behavior.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 5 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-money-bill-wave fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature5-title">Seamless Payment Tracking</h4>
+          <p class="mb-0" data-i18n="feature5-description">
+            Monitor payments in real-time with automated balance calculations
+            and payment history visualization.
+          </p>
+        </div>
+      </div>
+
+      <!-- Feature 6 -->
+      <div class="col-lg-4 col-md-6 mb-4">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt fa-2x"></i>
+          </div>
+          <h4 class="fw-bold mb-3" data-i18n="feature6-title">Mobile Accessibility</h4>
+          <p class="mb-0" data-i18n="feature6-description">
+            Manage your services on the go with our responsive design that
+            works on any device, anywhere.
+          </p>
+        </div>
+      </div>
+    </div>
+
+  
+    <!-- CTA Section -->
+    <div class="row cta-section text-center">
+      <div class="col-lg-8 mx-auto">
+        <h2 class="mb-4" data-i18n="cta-title">Ready to Transform Your Business?</h2>
+        <p class="mb-5" data-i18n="cta-description">
+          Join hundreds of businesses already streamlining their service
+          management with SevaSamruddhi Center. Start your free 30-day trial
+          today - no subscription required.
+        </p>
+        <a href="https://drive.google.com/file/d/1pL6_NeldQJGgAjSwJPlxflBcrZ4qdVrz/view" class="btn btn-cta">
+          <i class="fas fa-arrow-right me-2"></i> <span data-i18n="get-started">Get Started For Free</span>
+        </a>
+      </div>
     </div>
   </div>
-</div>
-        <!-- <div class="col-lg-6">
-          <img
-            src="/api/placeholder/600/400"
-            alt="SmartServ Dashboard"
-            class="img-fluid hero-image rounded-4"
-          />
-        </div> -->
-      </div>
 
-      <!-- Stats Section -->
-      <div class="row stats-section">
-        <div class="col-12 text-center mb-5">
-          <h2 class="fw-bold mb-4">Trusted by Growing Businesses</h2>
-        </div>
-        <!-- <div class="col-md-4 mb-4">
-          <div class="stat-card">
-            <i
-              class="fas fa-users fa-2x mb-3"
-              style="color: var(--primary-color)"
-            ></i>
-            <div class="stat-number">10+</div>
-            <h5 class="fw-bold">Active Users</h5>
-          </div>
-        </div> -->
-        <div class="col-md-4 mb-4">
-          <div class="stat-card">
-            <i
-              class="fas fa-clipboard-check fa-2x mb-3"
-              style="color: var(--primary-color)"
-            ></i>
-            <div class="stat-number">98%</div>
-            <h5 class="fw-bold">Customer Satisfaction</h5>
-          </div>
-        </div>
-        <div class="col-md-4 mb-4">
-          <div class="stat-card">
-            <i
-              class="fas fa-clock fa-2x mb-3"
-              style="color: var(--primary-color)"
-            ></i>
-            <div class="stat-number">15+</div>
-            <h5 class="fw-bold">Hours Saved Weekly</h5>
-          </div>
-        </div>
-      </div>
-
-      <!-- Features Section -->
-      <div class="row my-5">
-        <div class="col-12 text-center mb-5">
-          <h2 class="fw-bold">Powerful Features, Simplified</h2>
-          <p class="text-muted mb-5 w-75 mx-auto">
-            SevaSamruddhi Center combines cutting-edge technology with
-            user-friendly design to streamline your service management workflow.
-          </p>
-        </div>
-
-        <!-- Feature 1 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-users fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Smart Customer Management</h4>
-            <p class="mb-0">
-              Effortlessly organize customer profiles with subscription details,
-              payment history, and personalized preferences.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-bell fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Intelligent Notifications</h4>
-            <p class="mb-0">
-              Stay ahead with automated alerts for subscription renewals,
-              payment reminders, and important updates.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-calendar-alt fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Flexible Scheduling</h4>
-            <p class="mb-0">
-              Dynamically adjust service periods and automatically extend
-              subscriptions for absentee days.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 4 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-chart-line fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Insightful Analytics</h4>
-            <p class="mb-0">
-              Make data-driven decisions with comprehensive dashboards showing
-              payment trends and customer behavior.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 5 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-money-bill-wave fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Seamless Payment Tracking</h4>
-            <p class="mb-0">
-              Monitor payments in real-time with automated balance calculations
-              and payment history visualization.
-            </p>
-          </div>
-        </div>
-
-        <!-- Feature 6 -->
-        <div class="col-lg-4 col-md-6 mb-4">
-          <div class="feature-card">
-            <div class="feature-icon">
-              <i class="fas fa-mobile-alt fa-2x"></i>
-            </div>
-            <h4 class="fw-bold mb-3">Mobile Accessibility</h4>
-            <p class="mb-0">
-              Manage your services on the go with our responsive design that
-              works on any device, anywhere.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Testimonials Section
-      <div class="row my-5">
-        <div class="col-12 text-center mb-5">
-          <h2 class="fw-bold">What Our Users Say</h2>
-          <p class="text-muted mb-5 w-75 mx-auto">
-            Discover how SevaSamruddhi Center has transformed service management
-            for businesses like yours.
-          </p>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="testimonial-card">
-            <div class="d-flex align-items-center mb-4">
-              <img
-                src="/api/placeholder/70/70"
-                alt="Testimonial"
-                class="testimonial-avatar me-3"
-              />
-              <div>
-                <h5 class="fw-bold mb-0">Sarah Johnson</h5>
-                <p class="text-muted mb-0">Meal Service Owner</p>
-              </div>
-            </div>
-            <p class="mb-0">
-              "SevaSamruddhi has revolutionized how we manage our meal
-              subscriptions. The absentee day feature alone saved us countless
-              hours of manual adjustments."
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="testimonial-card">
-            <div class="d-flex align-items-center mb-4">
-              <img
-                src="/api/placeholder/70/70"
-                alt="Testimonial"
-                class="testimonial-avatar me-3"
-              />
-              <div>
-                <h5 class="fw-bold mb-0">Michael Chen</h5>
-                <p class="text-muted mb-0">Fitness Studio Manager</p>
-              </div>
-            </div>
-            <p class="mb-0">
-              "The payment tracking system is incredible. We've reduced payment
-              delays by 75% since implementing SevaSamruddhi Center for our
-              membership management."
-            </p>
-          </div>
-        </div>
-
-        <div class="col-md-4 mb-4">
-          <div class="testimonial-card">
-            <div class="d-flex align-items-center mb-4">
-              <img
-                src="/api/placeholder/70/70"
-                alt="Testimonial"
-                class="testimonial-avatar me-3"
-              />
-              <div>
-                <h5 class="fw-bold mb-0">Jessica Martinez</h5>
-                <p class="text-muted mb-0">Subscription Box Service</p>
-              </div>
-            </div>
-            <p class="mb-0">
-              "The analytics dashboard gives us insights we never had before.
-              Understanding our customer patterns has helped us grow our
-              business by 30% in just six months."
-            </p>
-          </div>
-        </div>
-      </div> -->
-
-      <!-- CTA Section -->
-      <div class="row cta-section text-center">
-        <div class="col-lg-8 mx-auto">
-          <h2 class="mb-4">Ready to Transform Your Business?</h2>
-          <p class="mb-5">
-            Join thousands of businesses already streamlining their service
-            management with SevaSamruddhi Center. Start your free 14-day trial
-            today - no credit card required.
-          </p>
-          <a href="https://drive.google.com/file/d/1kQLYfed6-qT4K8ZQ2O4YbiMpstSBZ2iz/view" class="btn btn-cta">
-            <i class="fas fa-arrow-right me-2"></i> Get Started For Free
+  <!-- Footer Section -->
+  <footer class="mt-5 pb-4" style="padding-left: 1.5rem; padding-right: 1rem;">
+    <div class="row border-top pt-5">
+      <!-- Company Info -->
+      <div class="col-lg-4 mb-4">
+        <h5 class="fw-bold mb-3">SevaSamruddhi</h5>
+        <p class="text-muted" data-i18n="company-description">Transforming service management with innovative solutions that help businesses streamline operations and enhance customer relationships.</p>
+        <div class="social-icons mt-3">
+          <a href="#" class="me-3 text-decoration-none" style="color: var(--primary-color);">
+            <i class="fab fa-facebook-f fa-lg"></i>
+          </a>
+          <a href="#" class="me-3 text-decoration-none" style="color: var(--primary-color);">
+            <i class="fab fa-twitter fa-lg"></i>
+          </a>
+          <a href="#" class="me-3 text-decoration-none" style="color: var(--primary-color);">
+            <i class="fab fa-linkedin-in fa-lg"></i>
+          </a>
+          <a href="#" class="me-3 text-decoration-none" style="color: var(--primary-color);">
+            <i class="fab fa-instagram fa-lg"></i>
           </a>
         </div>
       </div>
+      
+      <!-- Quick Links -->
+      <div class="col-lg-2 col-md-4 mb-4">
+        <!-- <h6 class="fw-bold mb-3">Quick Links</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Home</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Features</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Pricing</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Testimonials</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Contact Us</a></li>
+        </ul> -->
+      </div>
+      
+      <!-- Support -->
+      <div class="col-lg-2 col-md-4 mb-4">
+        <!-- <h6 class="fw-bold mb-3">Support</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Help Center</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Documentation</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">FAQs</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Community</a></li>
+          <li class="mb-2"><a href="#" class="text-decoration-none text-muted">Status</a></li>
+        </ul> -->
+      </div>
+      
+      <!-- Contact Info -->
+      <div class="col-lg-4 col-md-4 mb-4">
+        <h6 class="fw-bold mb-3" data-i18n="contact-us">Contact Us</h6>
+        <ul class="list-unstyled">
+          <li class="mb-2">
+            <i class="fas fa-map-marker-alt me-2" style="color: var(--primary-color);"></i>
+            <span data-i18n="address">Chhatrapati sambhajinagar, Maharashtra 431001</span>
+          </li>
+          <li class="mb-2">
+            <i class="fas fa-phone me-2" style="color: var(--primary-color);"></i>
+            +91 7588212138
+          </li>
+          <li class="mb-2">
+            <i class="fas fa-envelope me-2" style="color: var(--primary-color);"></i>
+            sevasamruddhi@gmail.com
+          </li>
+        </ul>
+        <div class="mt-3">
+          <a href="#" class="btn btn-outline btn-sm" data-i18n="get-support">Get Support</a>
+        </div>
+      </div>
     </div>
+    
+    <!-- Copyright -->
+    <div class="row mt-4">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="text-muted small mb-0" data-i18n="copyright">&copy; 2025 SevaSamruddhi. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item"><a href="#" class="text-decoration-none text-muted small" data-i18n="privacy-policy">Privacy Policy</a></li>
+          <li class="list-inline-item"><span class="text-muted">•</span></li>
+          <li class="list-inline-item"><a href="#" class="text-decoration-none text-muted small" data-i18n="terms-of-service">Terms of Service</a></li>
+          <li class="list-inline-item"><span class="text-muted">•</span></li>
+          <li class="list-inline-item"><a href="#" class="text-decoration-none text-muted small" data-i18n="cookie-policy">Cookie Policy</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    
+  </script>
+  
+  <!-- Translation Script -->
+  <script>
+  
+    const translations = {
+  'en': {
+    'hero-title': 'Transform Your Service Management',
+    'hero-description': 'Welcome to <strong>SevaSamruddhi</strong>, the all-in-one platform that revolutionizes how you manage subscriptions, track payments, and engage with customers.',
+    'download-app': 'Download App',
+    'install-app': 'Install App',
+    'stats-title': 'Trusted by Growing Businesses',
+    'active-users': 'Active Users',
+    'customer-satisfaction': 'Customer Satisfaction',
+    'hours-saved': 'Hours Saved Weekly',
+    'features-title': 'Powerful Features, Simplified',
+    'features-description': 'SevaSamruddhi Center combines cutting-edge technology with user-friendly design to streamline your service management workflow.',
+    'feature1-title': 'Smart Customer Management',
+    'feature1-description': 'Effortlessly organize customer profiles with subscription details, payment history, and personalized preferences.',
+    'feature2-title': 'Intelligent Notifications',
+    'feature2-description': 'Stay ahead with automated alerts for subscription renewals, payment reminders, and important updates.',
+    'feature3-title': 'Flexible Scheduling',
+    'feature3-description': 'Dynamically adjust service periods and automatically extend subscriptions for absentee days.',
+    'feature4-title': 'Insightful Analytics',
+    'feature4-description': 'Make data-driven decisions with comprehensive dashboards showing payment trends and customer behavior.',
+    'feature5-title': 'Seamless Payment Tracking',
+    'feature5-description': 'Monitor payments in real-time with automated balance calculations and payment history visualization.',
+    'feature6-title': 'Mobile Accessibility',
+    'feature6-description': 'Manage your services on the go with our responsive design that works on any device, anywhere.',
+    'cta-title': 'Ready to Transform Your Business?',
+    'cta-description': 'Join hundreds of businesses already streamlining their service management with SevaSamruddhi Center. Start your free 30-day trial today - no subscription required.',
+    'get-started': 'Get Started For Free',
+    'company-description': 'Transforming service management with innovative solutions that help businesses streamline operations and enhance customer relationships.',
+    'contact-us': 'Contact Us',
+    'address': 'Chhatrapati sambhajinagar, Maharashtra 431001',
+    'get-support': 'Get Support',
+    'copyright': '© 2025 SevaSamruddhi. All rights reserved.',
+    'privacy-policy': 'Privacy Policy',
+    'terms-of-service': 'Terms of Service',
+    'cookie-policy': 'Cookie Policy'
+  },
+  'hi': {
+    'hero-title': 'अपने सेवा प्रबंधन को बदलें',
+    'hero-description': '<strong>सेवासमृद्धि</strong> में आपका स्वागत है, वह सब-कुछ-एक-में प्लेटफॉर्म जो सदस्यताओं के प्रबंधन, भुगतान की निगरानी और ग्राहकों के साथ जुड़ने के तरीके को क्रांतिकारी बनाता है।',
+    'download-app': 'ऐप डाउनलोड करें',
+    'install-app': 'ऐप इंस्टॉल करें',
+    'stats-title': 'बढ़ते व्यवसायों द्वारा विश्वसनीय',
+    'active-users': 'सक्रिय उपयोगकर्ता',
+    'customer-satisfaction': 'ग्राहक संतुष्टि',
+    'hours-saved': 'साप्ताहिक बचाए गए घंटे',
+    'features-title': 'शक्तिशाली सुविधाएँ, सरलीकृत',
+    'features-description': 'सेवासमृद्धि सेंटर आपके सेवा प्रबंधन कार्यप्रवाह को सुव्यवस्थित करने के लिए अत्याधुनिक तकनीक और उपयोगकर्ता-अनुकूल डिज़ाइन को जोड़ता है।',
+    'feature1-title': 'स्मार्ट ग्राहक प्रबंधन',
+    'feature1-description': 'सदस्यता विवरण, भुगतान इतिहास और व्यक्तिगत प्राथमिकताओं के साथ ग्राहक प्रोफाइल को आसानी से व्यवस्थित करें।',
+    'feature2-title': 'बुद्धिमान सूचनाएँ',
+    'feature2-description': 'सदस्यता नवीनीकरण, भुगतान अनुस्मारक और महत्वपूर्ण अपडेट के लिए स्वचालित अलर्ट के साथ आगे रहें।',
+    'feature3-title': 'लचीला शेड्यूलिंग',
+    'feature3-description': 'सेवा अवधि को गतिशील रूप से समायोजित करें और अनुपस्थिति दिनों के लिए सदस्यताओं को स्वचालित रूप से बढ़ाएं।',
+    'feature4-title': 'अंतर्दृष्टिपूर्ण विश्लेषण',
+    'feature4-description': 'भुगतान प्रवृत्तियों और ग्राहक व्यवहार दिखाने वाले व्यापक डैशबोर्ड के साथ डेटा-संचालित निर्णय लें।',
+    'feature5-title': 'सहज भुगतान ट्रैकिंग',
+    'feature5-description': 'स्वचालित बैलेंस गणना और भुगतान इतिहास विज़ुअलाइज़ेशन के साथ वास्तविक समय में भुगतान की निगरानी करें।',
+    'feature6-title': 'मोबाइल पहुँच',
+    'feature6-description': 'हमारे प्रतिक्रियाशील डिज़ाइन के साथ चलते-फिरते अपनी सेवाओं का प्रबंधन करें जो किसी भी उपकरण पर, कहीं भी काम करता है।',
+    'cta-title': 'अपने व्यवसाय को बदलने के लिए तैयार हैं?',
+    'cta-description': 'सेवासमृद्धि सेंटर के साथ अपनी सेवा प्रबंधन को सुव्यवस्थित कर रहे सैकड़ों व्यवसायों में शामिल हों। आज ही अपना मुफ्त 30-दिन का परीक्षण शुरू करें - कोई सदस्यता आवश्यक नहीं।',
+    'get-started': 'मुफ्त में शुरू करें',
+    'company-description': 'नवीन समाधानों के साथ सेवा प्रबंधन को बदल रहे हैं जो व्यवसायों को संचालन को सुव्यवस्थित करने और ग्राहक संबंधों को बढ़ाने में मदद करते हैं।',
+    'contact-us': 'संपर्क करें',
+    'address': 'छत्रपति संभाजीनगर, महाराष्ट्र 431001',
+    'get-support': 'सहायता प्राप्त करें',
+    'copyright': '© 2025 सेवासमृद्धि। सर्वाधिकार सुरक्षित।',
+    'privacy-policy': 'गोपनीयता नीति',
+    'terms-of-service': 'सेवा की शर्तें',
+    'cookie-policy': 'कुकी नीति'
+  },
+  'mr': {
+    'hero-title': 'तुमच्या सेवा व्यवस्थापनाचे रूपांतर करा',
+    'hero-description': '<strong>सेवासमृद्धी</strong> मध्ये आपले स्वागत आहे, सर्व-एकात्मिक प्लॅटफॉर्म जो सदस्यता व्यवस्थापन, पेमेंट ट्रॅकिंग आणि ग्राहकांशी संवाद साधण्याच्या पद्धतीत क्रांती आणतो.',
+    'download-app': 'App डाउनलोड करा',
+    'install-app': 'App इंस्टॉल करा',
+    'stats-title': 'वाढत्या व्यवसायांचा विश्वास',
+    'active-users': 'सक्रिय वापरकर्ते',
+    'customer-satisfaction': 'ग्राहक समाधान',
+    'hours-saved': 'आठवड्याला वाचलेले तास',
+    'features-title': 'शक्तिशाली वैशिष्ट्ये, सोपी केलेली',
+    'features-description': 'सेवासमृद्धी सेंटर अत्याधुनिक तंत्रज्ञान आणि वापरकर्ता-अनुकूल डिझाइनचे संयोजन करून तुमच्या सेवा व्यवस्थापन कार्यप्रवाहास सुव्यवस्थित करते.',
+    'feature1-title': 'स्मार्ट ग्राहक व्यवस्थापन',
+    'feature1-description': 'सदस्यता तपशील, पेमेंट इतिहास आणि वैयक्तिकृत प्राधान्यांसह ग्राहक प्रोफाइल सहजपणे आयोजित करा.',
+    'feature2-title': 'हुशार सूचना',
+    'feature2-description': 'सदस्यता नूतनीकरण, पेमेंट रिमाइंडर आणि महत्त्वपूर्ण अपडेट्ससाठी स्वयंचलित अलर्टसह पुढे रहा.',
+    'feature3-title': 'लवचिक वेळापत्रक',
+    'feature3-description': 'सेवा कालावधी गतिमानपणे समायोजित करा आणि अनुपस्थितीच्या दिवसांसाठी सदस्यता स्वयंचलितपणे वाढवा.',
+    'feature4-title': 'अंतर्ज्ञानी विश्लेषण',
+    'feature4-description': 'पेमेंट ट्रेंड्स आणि ग्राहक वर्तन दाखवणाऱ्या व्यापक डॅशबोर्डसह डेटा-चालित निर्णय घ्या.',
+    'feature5-title': 'सहज पेमेंट ट्रॅकिंग',
+    'feature5-description': 'स्वयंचलित शिल्लक गणना आणि पेमेंट इतिहास व्हिज्युअलायझेशनसह रिअल-टाइम पेमेंट मॉनिटर करा.',
+    'feature6-title': 'मोबाइल ऍक्सेसिबिलिटी',
+    'feature6-description': 'आमच्या प्रतिसादात्मक डिझाइनसह चालता फिरता तुमच्या सेवा व्यवस्थापित करा जे कोणत्याही डिव्हाइसवर, कुठेही कार्य करते.',
+    'cta-title': 'तुमचा व्यवसाय रूपांतरित करण्यास तयार आहात?',
+    'cta-description': 'सेवासमृद्धी सेंटरसह त्यांची सेवा व्यवस्थापन सुव्यवस्थित करणाऱ्या शेकडो व्यवसायांमध्ये सामील व्हा. आज आपली मोफत 30-दिवसांची चाचणी सुरू करा - सदस्यता आवश्यक नाही.',
+    'get-started': 'मोफत सुरू करा',
+    'company-description': 'नवीन उपायांसह सेवा व्यवस्थापनाचे रूपांतर करत आहे जे व्यवसायांना कार्य सुव्यवस्थित करण्यास आणि ग्राहक संबंध वाढविण्यास मदत करतात.',
+    'contact-us': 'आमच्याशी संपर्क साधा',
+    'address': 'छत्रपती संभाजीनगर, महाराष्ट्र 431001',
+    'get-support': 'सपोर्ट मिळवा',
+    'copyright': '© 2025 सेवासमृद्धी. सर्व हक्क राखीव.',
+    'privacy-policy': 'गोपनीयता धोरण',
+    'terms-of-service': 'सेवेच्या अटी',
+    'cookie-policy': 'कुकी धोरण'
+  },
+ 'gu': {
+  'hero-title': 'તમારા સેવા વ્યવસ્થાપનનું પરિવર્તન કરો',
+  'hero-description': '<strong>સેવાસમૃદ્ધિ</strong> માં આપનું સ્વાગત છે, ઑલ-ઇન-વન પ્લેટફોર્મ જે સબ્સ્ક્રિપ્શનના વ્યવસ્થાપન, ચુકવણીનું ટ્રેકિંગ અને ગ્રાહકો સાથે જોડાવાની રીતમાં ક્રાંતિ લાવે છે.',
+  'download-app': 'એપ ડાઉનલોડ કરો',
+  'install-app': 'એપ ઇન્સ્ટોલ કરો',
+  'stats-title': 'વધતા વ્યવસાયો દ્વારા વિશ્વસનીય',
+  'active-users': 'સક્રિય વપરાશકર્તાઓ',
+  'customer-satisfaction': 'ગ્રાહક સંતોષ',
+  'hours-saved': 'અઠવાડિક બચાવેલા કલાકો',
+  'features-title': 'શક્તિશાળી સુવિધાઓ, સરળીકૃત',
+  'features-description': 'સેવાસમૃદ્ધિ સેન્ટર તમારી સેવા વ્યવસ્થાપન કાર્યપ્રણાલીને સુવ્યવસ્થિત કરવા માટે અત્યાધુનિક ટેકનોલોજી અને વપરાશકર્તા-મૈત્રીપૂર્ણ ડિઝાઇનને જોડે છે.',
+  'feature1-title': 'સ્માર્ટ ગ્રાહક વ્યવસ્થાપન',
+  'feature1-description': 'સબ્સ્ક્રિપ્શન વિગતો, ચુકવણી ઇતિહાસ અને વ્યક્તિગત પસંદગીઓ સાથે ગ્રાહક પ્રોફાઇલને સરળતાથી વ્યવસ્થિત કરો.',
+  'feature2-title': 'બુદ્ધિશાળી સૂચનાઓ',
+  'feature2-description': 'સબ્સ્ક્રિપ્શન રિન્યુઅલ, ચુકવણી રિમાઇન્ડર અને મહત્વપૂર્ણ અપડેટ્સ માટે ઓટોમેટેડ એલર્ટ્સ સાથે આગળ રહો.',
+  'feature3-title': 'લવચીક સમયપત્રક',
+  'feature3-description': 'સેવા અવધિને ગતિશીલ રીતે સમાયોજિત કરો અને ગેરહાજરીના દિવસો માટે સબ્સ્ક્રિપ્શનને આપોઆપ લંબાવો.',
+  'feature4-title': 'અંતર્દૃષ્ટિપૂર્ણ વિશ્લેષણ',
+  'feature4-description': 'ચુકવણી વલણો અને ગ્રાહક વર્તનને દર્શાવતા વ્યાપક ડેશબોર્ડ સાથે ડેટા-આધારિત નિર્ણયો લો.',
+  'feature5-title': 'સરળ ચુકવણી ટ્રેકિંગ',
+  'feature5-description': 'ઓટોમેટેડ બેલેન્સ ગણતરી અને ચુકવણી ઇતિહાસના વિઝ્યુઅલાઇઝેશન સાથે રીયલ-ટાઇમમાં ચુકવણીનું મોનિટરિંગ કરો.',
+  'feature6-title': 'મોબાઇલ ઍક્સેસિબિલિટી',
+  'feature6-description': 'અમારા પ્રતિસાદાત્મક ડિઝાઇન સાથે ચાલતા-ફરતા તમારી સેવાઓનું વ્યવસ્થાપન કરો જે કોઈપણ ઉપકરણ પર, ગમે ત્યાં કામ કરે છે.',
+  'cta-title': 'તમારા વ્યવસાયને પરિવર્તિત કરવા માટે તૈયાર છો?',
+  'cta-description': 'સેવાસમૃદ્ધિ સેન્ટર સાથે તેમની સેવા વ્યવસ્થાપનને સુવ્યવસ્થિત કરી રહેલા સેંકડો વ્યવસાયોમાં જોડાઓ. આજે જ તમારું મફત 30-દિવસનું ટ્રાયલ શરૂ કરો - કોઈ સબ્સ્ક્રિપ્શનની જરૂર નથી.',
+  'get-started': 'મફતમાં શરૂ કરો',
+  'company-description': 'નવીન ઉકેલો સાથે સેવા વ્યવસ્થાપનનું પરિવર્તન કરી રહ્યા છીએ જે વ્યવસાયોને કામગીરી સુવ્યવસ્થિત કરવામાં અને ગ્રાહક સંબંધોને વધારવામાં મદદ કરે છે.',
+  'contact-us': 'અમારો સંપર્ક કરો',
+  'address': 'છત્રપતિ સંભાજીનગર, મહારાષ્ટ્ર 431001',
+  'get-support': 'સપોર્ટ મેળવો',
+  'copyright': '© 2025 સેવાસમૃદ્ધિ. બધા અધિકારો સુરક્ષિત.',
+  'privacy-policy': 'ગોપનીયતા નીતિ',
+  'terms-of-service': 'સેવાની શરતો',
+  'cookie-policy': 'કૂકી નીતિ'
+}
+    };
+     // Function to change language
+     function changeLanguage(lang) {
+        // Update active state in dropdown
+        document.querySelectorAll('.dropdown-item').forEach(item => {
+            item.classList.remove('active');
+        });
+        document.querySelector(`.dropdown-item[onclick="changeLanguage('${lang}')"]`).classList.add('active');
+        
+        // Update button text
+        const langDisplay = {
+            'en': 'English',
+            'hi': 'हिंदी',
+            'mr': 'मराठी',
+            'gu': 'ગુજરાતી'
+        };
+        document.getElementById('languageDropdown').innerHTML = `<i class="fas fa-globe me-1"></i> ${langDisplay[lang]}`;
+        
+        // Apply translations
+        const elements = document.querySelectorAll('[data-i18n]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                // Handle HTML content safely
+                if (element.tagName.toLowerCase() === 'input') {
+                    element.value = translations[lang][key];
+                } else {
+                    element.innerHTML = translations[lang][key];
+                }
+            }
+        });
+    }
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+    // Set default language on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        changeLanguage('en');
+    });
+
+    </script>
