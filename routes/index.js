@@ -38,6 +38,10 @@ const ProfileController = require("../controllers/ProfileController")
 router.get("/", (req, res) => {
   res.render("home") // Render the home page
 })
+
+router.get("/privacy-policy", (req, res) => {
+  res.render("privacy")
+})
 // Auth routes
 router.post("/signup/business", AuthController.registerBusiness)
 router.post("/signup/user", AuthController.registerCustomer)
